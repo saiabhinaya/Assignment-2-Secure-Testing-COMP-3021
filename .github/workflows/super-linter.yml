@@ -1,4 +1,3 @@
----
 name: Lint
 
 on:
@@ -14,24 +13,19 @@ permissions: {}
 jobs:
   build:
     name: Lint
-    runs-on: ubuntu-latest  # Sets the environment to Ubuntu for the workflow
-
+    runs-on: ubuntu-latest  # Sets the environment to Ubuntu for the workflow.
     permissions:
-      contents: read    # Access to repository contents
-      packages: read    # Access to package management systems (if needed)
-      statuses: write   # For writing GitHub Actions status checks
+      contents: read   # Access to repository contents.
+      packages: read   # Access to package management systems (if needed).
+      statuses: write  # For writing GitHub Actions status checks.
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4  # Checkout the repository code
+        uses: actions/checkout@v4  # Checkout the repository code.
         with:
-          fetch-depth: 0  # Fetches full git history
+          fetch-depth: 0  # Fetches full git history.
 
       - name: Super-linter
-        uses: super-linter/super-linter@v7.3.0  # Use Super-Linter version 7.3.0
+        uses: super-linter/super-linter@v7.3.0  # Use Super-Linter version 7.3.0.
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token to report GitHub Actions status
-
-
-
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token to report GitHub Actions status.
