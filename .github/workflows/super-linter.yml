@@ -1,31 +1,33 @@
+---
 name: Lint
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: # yamllint disable-line rule:truthy
+  push: null
+  pull_request: null
 
 permissions: {}
 
 jobs:
   build:
     name: Lint
-    runs-on: ubuntu-latest  # Sets the environment to Ubuntu for the workflow.
+    runs-on: ubuntu-latest
+
     permissions:
-      contents: read   # Access to repository contents.
-      packages: read   # Access to package management systems (if needed).
-      statuses: write  # For writing GitHub Actions status checks.
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4  # Checkout the repository code.
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetches full git history.
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
 
       - name: Super-linter
-        uses: super-linter/super-linter@v7.3.0  # Use Super-Linter version 7.3.0.
+        uses: super-linter/super-linter@v7.3.0 # x-release-please-version
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token to report GitHub Actions status.
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
