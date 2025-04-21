@@ -9,12 +9,12 @@ on:
     branches:
       - main
 
-permissions: { }
+permissions: {}
 
 jobs:
   build:
     name: Lint
-    runs-on: ubuntu-latest  # This sets the environment to Ubuntu for the workflow
+    runs-on: ubuntu-latest  # Sets the environment to Ubuntu for the workflow
 
     permissions:
       contents: read  # Access to repository contents
@@ -31,5 +31,6 @@ jobs:
         uses: super-linter/super-linter@v7.3.0  # Use Super-Linter version 7.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token to report GitHub Actions status
+
 
 
