@@ -28,9 +28,10 @@ jobs:
           pip install bandit  # Install Bandit for security scanning
 
       - name: Run Bandit Scan
-        uses: shundor/bandit-action@v1  # Use Bandit action for code scanning
+        uses: shundor/python-bandit-scan@v1.0  # Use python-bandit-scan action for code scanning
         with:
           path: "."  # Path to the directory to scan (default is current directory)
           level: high  # Only report issues of 'high' severity or higher
           confidence: high  # Only report issues with 'high' confidence
           exit_zero: true  # Don't fail the build if issues are found
+          excluded_paths: ".git,__pycache__"  # Exclude certain paths like git folders and __pycache__
